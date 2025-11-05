@@ -1,9 +1,9 @@
 import React from "react";
+import logo from "../assets/logo.png"; // <- your existing logo
 
 export default function Header() {
   const [open, setOpen] = React.useState(false);
 
-  // Close the mobile menu when resizing to desktop
   React.useEffect(() => {
     const onResize = () => {
       if (window.innerWidth > 860) setOpen(false);
@@ -25,27 +25,34 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="container nav">
-        {/* Logo */}
+        {/* ---- Logo ---- */}
         <a href="#top" className="logo" aria-label="39 Steps Home">
-          <span className="logo-mark">39</span>
-          <span>Steps • Home Construction</span>
+          <img
+            src={logo}
+            alt="39 Steps Logo"
+            style={{ height: "40px", width: "auto", borderRadius: "6px" }}
+          />
         </a>
 
-        {/* Desktop Navigation */}
+        {/* ---- Desktop Nav ---- */}
         <nav className="desktop-nav">
           <NavLinks />
         </nav>
 
-        {/* Mobile Toggle */}
+        {/* ---- Mobile Menu Toggle ---- */}
         <button
           aria-label="Toggle menu"
-          className="mobile-toggle btn alt"
-          onClick={() => setOpen(v => !v)}
+          className="mobile-toggle"
+          onClick={() => setOpen((v) => !v)}
         >
-          {open ? "Close" : "Menu"}
+          <div className={`hamburger ${open ? "open" : ""}`}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </button>
 
-        {/* Mobile Dropdown */}
+        {/* ---- Mobile Dropdown ---- */}
         {open && (
           <nav className="mobile-nav">
             <NavLinks />
